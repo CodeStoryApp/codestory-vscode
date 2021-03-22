@@ -3,9 +3,10 @@
     "displayName": "CodeStory",
     "description": "VSCode plugin for CodeStory integration",
     "version": "0.1.0",
+    "icon": "images/logo.png",
     "publisher": "CodeStory",
     "repository": {
-        "url": "https://gitlab.com/codestoryapp/codestory-vscode"
+        "url": "https://github.com/CodeStoryApp/codestory-vscode"
     },
     "engines": {
         "vscode": "^1.50.0"

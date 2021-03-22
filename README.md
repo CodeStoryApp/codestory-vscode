@@ -1,6 +1,6 @@
-# CodeStory  README
+# CodeStory VSCode Extension
 
-This VSCode extension provides CodeStory integration.
+This VSCode extension provides [CodeStory](https://codestoryapp.com/) integration.
 
 * Token highlighting,
 * Command-click on tokens to view in CodeStory.
@@ -15,7 +15,7 @@ For example if there is an image subfolder under your extension project workspac
 
 ## Requirements
 
-Works with CodeStory.
+Works with [CodeStory](https://codestoryapp.com/).
 
 You also need to:
 - activate Semantic Highlighting in your VSCode settings.

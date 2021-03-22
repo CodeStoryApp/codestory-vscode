@@ -57,4 +57,5 @@ devDependencies:
   typescript: ^4.0.2
   vscode-test: ^1.4.0
 repository:
-  url: https://gitlab.com/codestoryapp/codestory-vscode
+  url: https://github.com/CodeStoryApp/codestory-vscode
+icon: images/logo.png
