@@ -1,0 +1,65 @@
+{
+    "name": "codestory",
+    "displayName": "CodeStory",
+    "description": "VSCode plugin for CodeStory integration",
+    "version": "0.1.0",
+    "publisher": "CodeStory",
+    "repository": {
+        "url": "https://gitlab.com/codestoryapp/codestory-vscode"
+    },
+    "engines": {
+        "vscode": "^1.50.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onFileSystem:file"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "configuration": [
+            {
+                "title": "CodeStory",
+                "properties": {
+                    "codestory.installPath": {
+                        "type": "string",
+                        "default": null,
+                        "description": "CodeStory app installation path.",
+                        "scope": "machine"
+                    }
+                }
+            }
+        ],
+        "semanticTokenTypes": [
+            {
+                "id": "codestory",
+                "description": "A codestory type."
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run compile",
+        "compile": "yarn syncpackagejson && tsc -p ./",
+        "lint": "eslint src --ext ts",
+        "watch": "yarn syncpackagejson && tsc -watch -p ./",
+        "pretest": "yarn run compile && yarn run lint",
+        "test": "node ./out/test/runTest.js",
+        "syncpackagejson": "node ./node_modules/package-yaml/index.js",
+        "package": "vsce package --baseImagesUrl ."
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^12.11.7",
+        "@types/vscode": "^1.50.0",
+        "@typescript-eslint/eslint-plugin": "^4.1.1",
+        "@typescript-eslint/parser": "^4.1.1",
+        "eslint": "^7.9.0",
+        "glob": "^7.1.6",
+        "mocha": "^8.1.3",
+        "package-yaml": "^1.0.0",
+        "typescript": "^4.0.2",
+        "vscode-test": "^1.4.0"
+    }
+}
