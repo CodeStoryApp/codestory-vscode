@@ -2,7 +2,7 @@
     "name": "codestory",
     "displayName": "CodeStory",
     "description": "VSCode plugin for CodeStory integration",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "icon": "images/logo.png",
     "publisher": "CodeStory",
     "repository": {
