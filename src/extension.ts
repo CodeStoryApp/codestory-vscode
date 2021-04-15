@@ -12,9 +12,9 @@ const regex = new RegExp(tokenRePattern);
 
 const defaultPaths: { [k in Platform]: string } = {
   darwin:
-    "/Applications/Code Story.app/Contents/MacOS/Code Story/Contents/MacOS/Code Story", // #aN76q#
-  win32: "C:/Program Files/Code Story/Code Story.exe",
-  linux: "/opts/codestory-x86_64.AppImage",
+    "/Applications/CodeStory.app/Contents/MacOS/CodeStory/Contents/MacOS/CodeStory", // #aN76q#
+  win32: "C:/Program Files/CodeStory/CodeStory.exe",
+  linux: "/opts/CodeStory.AppImage",
 };
 
 // This method is called when the extension is activated.
@@ -46,12 +46,14 @@ export function activate(context: vscode.ExtensionContext) {
           .getConfiguration()
           .get("codestory.installPath") as string;
 
+        // CodeStory being an electron app, launching it with VSCode default env vars doesn't work!
+        // https://stackoverflow.com/questions/51428982/execute-an-electron-app-within-vscode-extension
+        const spawn_env = JSON.parse(JSON.stringify(process.env));
+        delete spawn_env.ATOM_SHELL_INTERNAL_RUN_AS_NODE;
+        delete spawn_env.ELECTRON_RUN_AS_NODE;
         const p = spawn(cmd, ["-f", args.file, "-t", args.token], {
-          detached: true,
-          // CodeStory being an electron app, launching it with VSCode default env vars doesn't work!
-          // https://stackoverflow.com/questions/51428982/execute-an-electron-app-within-vscode-extension
-          // Let's pass an empty dict, then.
-          env: {},
+          detached: false,
+          env: spawn_env,
         });
         p.on("error", function (error) {
           vscode.window.showErrorMessage("CodeStory error: " + error);
