@@ -51,13 +51,17 @@ export function activate(context: vscode.ExtensionContext) {
         const spawn_env = JSON.parse(JSON.stringify(process.env));
         delete spawn_env.ATOM_SHELL_INTERNAL_RUN_AS_NODE;
         delete spawn_env.ELECTRON_RUN_AS_NODE;
+        // https://stackoverflow.com/questions/12871740/how-to-detach-a-spawned-child-process-in-a-node-js-script#answer-12871847
         const p = spawn(cmd, ["-f", args.file, "-t", args.token], {
-          detached: false,
+          detached: true,
           env: spawn_env,
+          stdio: ['ignore', 'ignore']
         });
         p.on("error", function (error) {
           vscode.window.showErrorMessage("CodeStory error: " + error);
         });
+        // Make sure to unref but leave time for possible errors to be received.
+        setTimeout(() => p.unref(), 5000)
       }
     )
   );
